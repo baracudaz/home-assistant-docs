@@ -11,13 +11,14 @@ ha_codeowners:
 ha_domain: fenix_control
 ha_platforms:
   - climate
+  - sensor
 ha_integration_type: hub
 ha_quality_scale: bronze
 ---
 
 The **FENIX Control** {% term integration %} lets you control [FENIX](https://www.fenixgroup.cz/en/) TFT Wi-Fi thermostats from Home Assistant. FENIX makes electric underfloor heating systems, and the TFT Wi-Fi thermostat regulates them per room. For the product range, see the [Wi-Fi thermostats](https://www.fenixgroup.cz/en/product-category/thermostats-and-controls/for-households-wi-fi/) on the FENIX website.
 
-The thermostats connect to the FENIX Control cloud, the same service the FENIX Control mobile app uses. The integration signs in with your FENIX Control account and creates a climate entity for every thermostat in your account. You can see the room temperature and whether the thermostat is heating, switch between the thermostat's operating modes, and set the target temperature.
+The thermostats connect to the FENIX Control cloud, the same service the FENIX Control mobile app uses. The integration signs in with your FENIX Control account and creates a climate entity and sensors for every thermostat in your account. You can see the room temperature and whether the thermostat is heating, switch between the thermostat's operating modes, set the target temperature, and track the energy your heating uses.
 
 ## Supported devices
 
@@ -68,6 +69,14 @@ When the thermostat is in a preset, the HVAC mode shows **Auto**.
 
 You can set the target temperature between 5 °C and 35 °C in steps of 0.5 °C. The target temperature can only be changed in the **Heat** HVAC mode. To set a temperature from an automation while the thermostat is in **Auto** or **Off**, first set the HVAC mode to **Heat**.
 
+### Sensors
+
+For each thermostat, the integration creates the following sensors:
+
+- **Energy consumption today**: The energy the room's heating has used since midnight, in Wh. It starts again from zero every day.
+- **Room temperature**: The room temperature measured by the thermostat.
+- **Floor temperature**: The floor temperature, if a floor sensor is connected to the thermostat. This sensor is disabled by default. To use it, enable the entity in its settings.
+
 ### Holidays
 
 Holidays are set in the FENIX Control app and apply to all thermostats of an installation. While a holiday is active, the thermostats can't be controlled from Home Assistant: the climate entity offers no controls and shows the **Auto** HVAC mode. The controls return when the holiday ends or is canceled in the app.
@@ -75,6 +84,8 @@ Holidays are set in the FENIX Control app and apply to all thermostats of an ins
 ## Data updates
 
 The integration {% term polling polls %} the FENIX Control cloud every 5 minutes. When you change a mode, preset, or temperature in Home Assistant, the new state is shown immediately, and the next update confirms it.
+
+The FENIX Control cloud publishes energy consumption with a delay of up to about 2 hours, so **Energy consumption today** can lag behind the actual consumption.
 
 If the cloud can't be reached, the thermostats show as unavailable until the next successful update.
 
@@ -84,7 +95,6 @@ If the cloud can't be reached, the thermostats show as unavailable until the nex
 - Holidays can't be set or canceled from Home Assistant. Use the FENIX Control app.
 - The weekly program can't be changed from Home Assistant.
 - Home Assistant can't change the Defrost or Boost temperature or the Boost duration. The target temperature can be set in Heat (manual) mode only.
-- The integration doesn't provide sensor entities.
 
 ## Troubleshooting
 
