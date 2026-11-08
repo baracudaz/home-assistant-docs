@@ -95,6 +95,7 @@ If the cloud can't be reached, the thermostats show as unavailable until the nex
 - The weekly program can't be changed from Home Assistant.
 - Home Assistant can't change the Defrost or Boost temperature or the Boost duration. The target temperature can be set in Heat (manual) mode only.
 - The floor temperature isn't available, even with a floor sensor connected to the thermostat: the FENIX Control cloud doesn't report it.
+- Open-window detection, the floor temperature limit and the Professional Mode (touchscreen lock) aren't reported by the cloud. A thermostat that stops heating because of an open window shows as **Idle**, the same as one that has reached its target temperature.
 
 ## Troubleshooting
 
