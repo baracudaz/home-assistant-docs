@@ -75,7 +75,6 @@ For each thermostat, the integration creates the following sensors:
 
 - **Energy consumption today**: The energy the room's heating has used since midnight, in Wh. It starts again from zero every day.
 - **Room temperature**: The room temperature measured by the thermostat.
-- **Floor temperature**: The floor temperature, if a floor sensor is connected to the thermostat. This sensor is disabled by default. To use it, enable the entity in its settings.
 
 ### Holidays
 
@@ -95,6 +94,7 @@ If the cloud can't be reached, the thermostats show as unavailable until the nex
 - Holidays can't be set or canceled from Home Assistant. Use the FENIX Control app.
 - The weekly program can't be changed from Home Assistant.
 - Home Assistant can't change the Defrost or Boost temperature or the Boost duration. The target temperature can be set in Heat (manual) mode only.
+- The floor temperature isn't available, even with a floor sensor connected to the thermostat: the FENIX Control cloud doesn't report it.
 
 ## Troubleshooting
 
