@@ -105,6 +105,9 @@ If the cloud can't be reached, the thermostats show as unavailable until the nex
 - Home Assistant can't change the Boost duration.
 - The floor temperature isn't available, even with a floor sensor connected to the thermostat: the FENIX Control cloud doesn't report it.
 - Open-window detection, the floor temperature limit and the Professional Mode (touchscreen lock) aren't reported by the cloud. A thermostat that stops heating because of an open window shows as **Idle**, the same as one that has reached its target temperature.
+- The target temperature is set in steps of 0.5 °C.
+- In Defrost and Boost, the target range is the range of that mode. To switch to Heat with a target outside it, change the mode first, then the target.
+- Changes go through the FENIX Control cloud. A thermostat can take up to a minute to apply them, and Home Assistant can briefly show the previous state until the next update.
 
 ## Troubleshooting
 
